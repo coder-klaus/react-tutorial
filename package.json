@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "React18的入门教程",
   "scripts": {
-   "start": "http-server ."
+   "start": "http-server src/"
   },
   "keywords": [],
   "author": "",
