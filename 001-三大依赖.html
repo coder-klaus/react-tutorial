@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>React的三大依赖</title>
+  <!-- React19开始并不提供CDN引入方式，只能通过 npm 安装使用 -->
+
+  <!-- 全局注入 React -->
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <!-- 全局注入 ReactDOM -->
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+
+  <!-- 引入babel -->
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+<body>
+<!-- 挂载点 => vue一般为 div#app， 而 react一般为 div#root -->
+<!-- 渲染后内容会作为挂载点的innerHTML被设置，并替换挂载点中原本存在的内容 -->
+<!-- 挂载点中内容才是 前端应用，挂载点本身并不是 -->
+<div id="root"></div>
+
+<!-- type="text/babel"> 表示其中脚本需要先经过babel处理后才能被浏览器处理 -->
+<script type="text/babel">
+  const msg = 'Hello React'
+
+  // 创建根节点 ReactDOM.createRoot(挂载点对应的dom元素)
+  const root = ReactDOM.createRoot(document.getElementById('root'))
+  // 进行实际的渲染
+  root.render(<h2>{ msg }</h2>)
+</script>
+</body>
+</html>
