@@ -5,29 +5,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" href="https://react.dev/favicon.ico" />
   <title>React的三大依赖</title>
-  <!-- React19开始并不提供CDN引入方式，只能通过 npm 安装使用 -->
+  <!-- React 19 开始官方不再维护 UMD/CDN 版本，只能通过 npm/yarn/pnpm 安装使用 -->
 
   <!-- 全局注入 React -->
   <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
   <!-- 全局注入 ReactDOM -->
   <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
 
-  <!-- 引入babel -->
+  <!-- 引入 Babel，用于在浏览器中转译 JSX 语法 -->
   <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
 </head>
 <body>
-<!-- 挂载点 => vue一般为 div#app， 而 react一般为 div#root -->
-<!-- 渲染后内容会作为挂载点的innerHTML被设置，并替换挂载点中原本存在的内容 -->
-<!-- 挂载点中内容才是 前端应用，挂载点本身并不是 -->
+<!--
+  挂载点：Vue 通常为 div#app，React 通常为 div#root
+  渲染后内容会作为挂载点的 innerHTML 被设置，因此会直接替换原有内容
+  挂载点本身不是前端应用的一部分，挂载点中的内容才是
+-->
 <div id="root"></div>
 
-<!-- type="text/babel"> 表示其中脚本需要先经过babel处理后才能被浏览器处理 -->
+<!-- type="text/babel" 表示该脚本需先经 Babel 处理后再由浏览器执行 -->
 <script type="text/babel">
   const msg = 'Hello React'
 
-  // 创建根节点 ReactDOM.createRoot(挂载点对应的dom元素)
+  // 通过 ReactDOM 创建根节点 「 参数为 实际的挂载点对应 DOM 节点 」
   const root = ReactDOM.createRoot(document.getElementById('root'))
-  // 进行实际的渲染
+  // 实际渲染内容到挂载点
   root.render(<h2>{ msg }</h2>)
 </script>
 </body>
