@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>React 多个根节点演示</title>
+  <title>React.createElement 的基本使用</title>
   <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
   <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
   <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
@@ -12,18 +12,29 @@
   <div id="root"></div>
   <div id="app"></div>
   <script type="text/babel">
-    // React 18 中，ReactDOM.render 被弃用，改为 ReactDOM.createRoot
-    // 我们可以通过 createRoot 创建一个根节点，然后通过 render 方法渲染到页面上
-    // 因此从语法上来讲，React 18 中，一个组件中可以存在多个根节点分别管理页面的对应dom节点子元素
-    // 虽然这种情况非常少见，但这也是 React 渐进式的一个重要体现
+    function JSXCpn() {
+      return (
+        <div className="container">
+          <h1>Hello, React!</h1>
+          <p>This is a demo.</p>
+        </div>
+      )
+    }
 
-    // 创建第一个根节点
     const root = ReactDOM.createRoot(document.getElementById('root'))
-    root.render(<h2>Hello React</h2>)
+    root.render(<JSXCpn />)
 
-    // 创建第二个根节点
+    //  --------- 这两种写法是等价的 ---------
+
+    function CreateElementCpn() {
+      return React.createElement('div', { className: 'container' },
+        React.createElement('h1', null, 'Hello, React!'),
+        React.createElement('p', null, 'This is a demo.')
+      )
+    }
+
     const app = ReactDOM.createRoot(document.getElementById('app'))
-    app.render(<h2>Hello App</h2>)
+    app.render(<CreateElementCpn />)
   </script>
 </body>
 </html>

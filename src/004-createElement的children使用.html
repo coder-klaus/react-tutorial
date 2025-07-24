@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="https://react.dev/favicon.ico" />
+  <title>createElement的children使用</title>
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+<body>
+<div id="root"></div>
+
+<script type="text/babel">
+  function Demo(props) {
+    // 子元素是作为props的children属性传递的
+    // 简单来说，除了第一个表明要创建什么外，后续都是为了生成props对象
+    console.log(props.children);
+    return React.createElement('div', null, props.children);
+  }
+
+   // 不同个数的子元素，props.children 值的类型各不相同
+   function App() {
+     // 只有使用了构建工具，才能使用 React.Fragment 的 <> 语法糖
+     return <React.Fragment>
+      {/*
+        没有子元素
+        props.children: undefined
+      */}
+      <Demo />
+
+      {/*
+        传递一个子元素
+        props.children: ReactElement<h2>
+      */}
+      <Demo>
+        <h2>Hello React</h2>
+      </Demo>
+
+      {/*
+        传递多个子元素
+        props.children: [ ReactElement<h2>, ReactElement<p> ]
+      */}
+      <Demo>
+        <h2>Hello React</h2>
+        <p>This is a paragraph</p>
+      </Demo>
+     </React.Fragment>
+   }
+
+   const root = ReactDOM.createRoot(document.getElementById('root'))
+   root.render(<App />)
+</script>
+</body>
+</html>

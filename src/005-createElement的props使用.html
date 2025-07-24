@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="https://react.dev/favicon.ico" />
+  <title>createElement的props使用</title>
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+<body>
+<div id="root"></div>
+
+<script type="text/babel">
+  // 不传属性
+  const element1 = React.createElement('div');
+  console.log(element1.props); // {}
+
+  // 显式传递 null
+  const element2 = React.createElement('div', null);
+  console.log(element2.props); // {}
+
+  // 传递一个属性
+  const element3 = React.createElement('div', { className: 'box' });
+  console.log(element3.props); // { className: 'box' }
+</script>
+</body>
+</html>
