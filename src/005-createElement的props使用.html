@@ -14,6 +14,8 @@
 <div id="root"></div>
 
 <script type="text/babel">
+  console.log('React.createElement 的 props 使用 打印日志 开始')
+
   // 不传属性
   const element1 = React.createElement('div');
   console.log(element1.props); // {}
@@ -25,6 +27,8 @@
   // 传递一个属性
   const element3 = React.createElement('div', { className: 'box' });
   console.log(element3.props); // { className: 'box' }
+
+  console.log('React.createElement 的 props 使用 打印日志 结束')
 </script>
 </body>
 </html>
