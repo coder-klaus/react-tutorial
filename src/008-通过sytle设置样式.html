@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="https://react.dev/favicon.ico" />
+  <title>通过sytle设置样式</title>
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    function App() {
+      // ❌ 错误写法：直接写字符串，React中会报错
+      // const element = <div style="color: red; font-size: 16px;">Hello, World!</div>
+
+      // ✅ 推荐写法：使用样式对象，属性名采用驼峰命名法，单位为px时可省略
+      const styleObj = {
+        color: 'red',
+        fontSize: 20, // 等价于 '20px'
+        backgroundColor: '#f0f0f0',
+        padding: '10px 20px',
+        borderRadius: 8
+      }
+
+      // 🚨 不推荐写法：属性名用中划线，虽然能用但会有警告
+      // const element = <div style={{ color: 'red', 'font-size': 16 }}>Hello, World!</div>
+
+      return (
+        <div style={styleObj}>Hello World</div>
+      )
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById('root'))
+    root.render(<App />)
+  </script>
+</body>
+</html>

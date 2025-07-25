@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="https://react.dev/favicon.ico" />
+  <title>classNames的使用</title>
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  <!-- 引入 classnames 库 -->
+  <script src="https://cdn.jsdelivr.net/npm/classnames/index.min.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    // 下面演示 classNames 的多种用法
+
+    // 1. 直接传字符串
+    const class1 = classNames('foo', 'bar')
+    console.log('直接传字符串:', class1) // 输出: "foo bar"
+
+    // 2. 传递对象，根据布尔值决定是否添加
+    const class2 = classNames({
+      'active': true,
+      'disabled': false,
+      'highlight': 1 > 2 // false
+    })
+    console.log('对象用法:', class2) // 输出: "active"
+
+    // 3. 混合字符串和对象
+    const class3 = classNames('btn', { 'btn-primary': true, 'btn-disabled': false })
+    console.log('混合用法:', class3) // 输出: "btn btn-primary"
+
+    // ⚠️注意⚠️： 因为对象的key会自动转字符串，所以属性值没有 falsy 值的说法
+    // 但是 属性值会自动过滤 名为 true 和 false的样式值
+    const class4 = classNames('btn', { 0: true, false: false })
+    console.log(class4) // 输出: "btn 0"
+
+    // 4. 传递数组
+    const class5 = classNames(['a', 'b'], { c: true, d: false })
+    console.log('数组用法:', class4) // 输出: "a b c"
+
+    // 5. 复杂嵌套
+    const class6 = classNames('root', ['item', { selected: true }], { hidden: false })
+    console.log('复杂嵌套:', class5) // 输出: "root item selected"
+
+    // 6. 传递 falsy 值会被自动忽略
+    const class7 = classNames(null, undefined, false, '', 0, 'real')
+    console.log('falsy值会被忽略:', class6) // 输出: "real"
+
+    // 7. 布尔类型值一律会被忽略，无论真假
+    const class8 = classNames(true, false)
+    console.log('布尔类型值一律会被忽略:', class7) // 输出: ""
+  </script>
+</body>
+</html>

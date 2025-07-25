@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="https://react.dev/favicon.ico" />
+  <title>通过class设置样式</title>
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    function App() {
+      // 这是一个简单的 demo，演示如何通过 className 设置样式
+      return (
+        <>
+          {/* 直接写 class 和 for 时，React能解析，但控制台会报错 */}
+
+          {/* 在 React 中，label 的 for 属性需要写成 htmlFor */}
+          <label htmlFor="inputId" className="label-style">请输入内容：</label>
+          {/* 在 React 中，class 需要写成 className */}
+          <input id="inputId" className="input-style" />
+        </>
+      )
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById('root'))
+    root.render(<App />)
+  </script>
+</body>
+</html>
