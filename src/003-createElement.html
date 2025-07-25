@@ -11,7 +11,9 @@
 <body>
   <div id="root"></div>
   <div id="app"></div>
+
   <script type="text/babel">
+    // 使用 JSX 语法定义组件
     function JSXCpn() {
       return (
         <div className="container">
@@ -21,20 +23,27 @@
       )
     }
 
-    const root = ReactDOM.createRoot(document.getElementById('root'))
-    root.render(<JSXCpn />)
-
-    //  --------- 这两种写法是等价的 ---------
-
+    // 使用 React.createElement 方式定义组件
     function CreateElementCpn() {
-      return React.createElement('div', { className: 'container' },
+      return React.createElement(
+        'div',
+        { className: 'container' },
         React.createElement('h1', null, 'Hello, React!'),
         React.createElement('p', null, 'This is a demo.')
       )
     }
 
-    const app = ReactDOM.createRoot(document.getElementById('app'))
-    app.render(<CreateElementCpn />)
+    // 渲染 JSX 组件
+    const root1 = ReactDOM.createRoot(document.getElementById('root1'))
+    root1.render(<JSXCpn />)
+
+    // 渲染 createElement 组件
+    const root2 = ReactDOM.createRoot(document.getElementById('root2'))
+    root2.render(<CreateElementCpn />)
+
+    // ----------- 说明 -----------
+    // 上述两种写法等价：JSX 最终会被编译为 React.createElement 形式。
+    // 两种方式渲染结果完全一致。
   </script>
 </body>
 </html>
