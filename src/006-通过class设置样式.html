@@ -14,16 +14,28 @@
 
   <script type="text/babel">
     function App() {
+      let dynamicClass = 'dynamic-class'
+
       // 这是一个简单的 demo，演示如何通过 className 设置样式
       return (
-        <>
+        // 在非构建环境下，React.Fragment 不能被简写为 <>
+        <React.Fragment>
           {/* 直接写 class 和 for 时，React能解析，但控制台会报错 */}
 
           {/* 在 React 中，label 的 for 属性需要写成 htmlFor */}
           <label htmlFor="inputId" className="label-style">请输入内容：</label>
           {/* 在 React 中，class 需要写成 className */}
           <input id="inputId" className="input-style" />
-        </>
+
+          {/* 在vue中，静态class和动态class可以一起使用，但是 React 中不可以 */}
+          <div className='static-class { dynamicClass }'>静态class 和 动态class 无法一起使用</div>
+          {/* 最终的渲染结果为 <div class="static-class { dynamicClass }">静态class 和 动态class 无法一起使用</div> */}
+
+          {/* 如果想要使用动态class，需要使用 classnames 库 或 手动进行字符串拼接 */}
+          <div className={`static-class ${dynamicClass}`}>静态class 和 动态class 可以一起使用</div>
+          {/* 还有一个更简单一点的方式是 数组拼接 */}
+          <div className={['static-class', dynamicClass].join(' ')}>静态class 和 动态class 可以一起使用</div>
+        </React.Fragment>
       )
     }
 

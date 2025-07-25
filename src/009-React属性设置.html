@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>React 属性设置</title>
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    class App extends React.PureComponent {
+      state = {
+        src: 'https://react.dev/favicon.ico',
+        user: {
+          name: '张三',
+          age: 18
+        }
+      }
+
+      render() {
+        const { src, user } = this.state
+        return (
+          <React.Fragment>
+            {/* 通过差值语法绑定属性，但不能写成 <img {src} alt="React Logo" /> */}
+            <img src={src} alt="React Logo" />
+
+            {/*
+              通过解构语法可以一次性绑定多个属性, 最终的渲染结果为
+              <div name="张三" age="18">一次性绑定多个属性</div>
+            */}
+            <div {...user}>一次性绑定多个属性</div>
+          </React.Fragment>
+        )
+      }
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById('root'))
+    root.render(<App />)
+  </script>
+</body>
+</html>
