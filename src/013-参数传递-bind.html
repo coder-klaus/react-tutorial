@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="https://react.dev/favicon.ico" />
+  <title>React的参数传递-bind</title>
+
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    class App extends React.PureComponent {
+      state = {
+        count: 0,
+        decrement: this.decrement.bind(this)
+      }
+
+      increment(step) {
+        this.setState({
+          count: this.state.count + step
+        })
+      }
+
+      decrement(step) {
+        console.log(this)
+
+        this.setState({
+          count: this.state.count - step
+        })
+      }
+
+      setCount(step, e) {
+        console.log(e) // SyntheticBaseEvent{...}
+
+        this.setState({
+          count: step
+        })
+      }
+
+      render() {
+        return (
+          <div>
+            <h2>计数器：{ this.state.count }</h2>
+            {/* 在JSX中，通过bind修正this后的参数传递 */}
+            <button onClick={this.increment.bind(this, 10)}>+10</button>
+
+            {/*
+              这里的decrement方法在构造函数中进行了统一的this的参数传递，虽然避免了每次调用时都需要手动bind绑定
+              但其进行参数传递时，依旧需要通过如下方法
+              1. 参数传递需要通过在外继续包裹一层 bind方法或箭头函数实现参数传递
+              2. 如果使用bind方法，this的指向并不重要，因为 this.decrement 方法本身已经是修正好this指向的bind函数
+            */}
+            <button onClick={this.state.decrement.bind(null, 10)}>-10</button>
+            <button onClick={e => this.state.decrement(10, e)}>-10</button>
+
+            {/*
+               1. const fun = fn.bind(this, ...args1) 2. fun(...args2)
+               最终 fun 接收到的参数类似于 ...[...args1, ...args2]
+
+               因此对于 bind方法而言，如果要在回调中获取合成事件对象，其合成事件对象一定位于参数列表的最后
+            */}
+            <button onClick={this.setCount.bind(this, 20)}>set 20</button>
+          </div>
+        )
+      }
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById('root'))
+    root.render(<App />)
+  </script>
+</body>
+</html>

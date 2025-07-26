@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="https://react.dev/favicon.ico" />
+  <title>React的参数传递-箭头函数</title>
+
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    class App extends React.PureComponent {
+      state = {
+        count: 0,
+      }
+
+      increment(step, e) {
+        console.log(e)
+
+        this.setState({
+          count: this.state.count + step
+        })
+      }
+
+      render() {
+        return (
+          <div>
+            <h2>计数器：{ this.state.count }</h2>
+            {/*
+              1. 合成事件参数是传递给外层箭头函数的，需要手动转发
+              2. 内层方法是我们自己手动调用的，因此参数怎么传递，我们自己说了算
+            */}
+            <button onClick={e => this.increment(10, e)}>-10</button>
+          </div>
+        )
+      }
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById('root'))
+    root.render(<App />)
+  </script>
+</body>
+</html>

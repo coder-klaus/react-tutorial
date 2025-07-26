@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="https://react.dev/favicon.ico" />
+  <title>React合成事件对象的基本使用</title>
+
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    class App extends React.PureComponent {
+      handleClick(e) {
+        console.log(e) // SyntheticBaseEvent{...}
+
+        // 原生事件对象上绝大多数常用属性在合成事件对象中都能找到
+        console.log(e.target) // <button>
+        console.log(e.currentTarget) // <button>
+
+        // 合成事件对象上存在属性 nativeEvent，指向原生事件对象
+        console.log(e.nativeEvent) // PointerEvent{...}
+      }
+
+      render() {
+        return (
+          <div>
+            <button onClick={this.handleClick}>click me</button>
+          </div>
+        )
+      }
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById('root'))
+    root.render(<App />)
+  </script>
+</body>
+</html>

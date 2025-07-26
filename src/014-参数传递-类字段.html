@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="https://react.dev/favicon.ico" />
+  <title>React的参数传递-类字段</title>
+
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    class App extends React.PureComponent {
+      state = {
+        count: 0,
+      }
+
+      increment = (step, e) => {
+        console.log(e)
+
+        this.setState({
+          count: this.state.count + step
+        })
+      }
+
+      render() {
+        return (
+          <div>
+            <h2>计数器：{ this.state.count }</h2>
+            {/*
+              使用类字段修正this的指向后，传递参数的方式依旧是
+              需要通过在外层包裹一层箭头函数或使用bind方法实现参数传递
+              同样的其合成事件也是作为参数列表的最后一个参数被传入
+            */}
+            <button onClick={this.increment.bind(null, 10)}>-10</button>
+            {/* 外层包裹箭头函数，事件对象默认传递给外层函数，需要手动进行转发 */}
+            <button onClick={e => this.increment(10, e)}>-10</button>
+          </div>
+        )
+      }
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById('root'))
+    root.render(<App />)
+  </script>
+</body>
+</html>
