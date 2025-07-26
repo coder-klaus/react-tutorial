@@ -25,7 +25,10 @@
         const { src, user } = this.state
         return (
           <React.Fragment>
-            {/* 通过差值语法绑定属性，但不能写成 <img {src} alt="React Logo" /> */}
+            {/*
+              通过插值语法绑定属性
+              但不能写成 <img {src} alt="React Logo" /> 或 <img src alt="React Logo" />
+            */}
             <img src={src} alt="React Logo" />
 
             {/*

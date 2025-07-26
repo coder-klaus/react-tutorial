@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="https://react.dev/favicon.ico" />
+  <title>React合成事件this修正</title>
+
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    class App extends React.PureComponent {
+      state = {
+        count: 0
+      }
+
+      increment() {
+        this.setState({
+          count: this.state.count + 1
+        })
+      }
+
+      decrement = () => {
+        this.setState({
+          count: this.state.count - 1
+        })
+      }
+
+      changeCount(step) {
+        this.setState({
+          count: this.state.count + step
+        })
+      }
+
+      render() {
+        return (
+          <React.Fragment>
+            <h2>计数器：{ this.state.count }</h2>
+            {/* 方法一：通过bind方法绑定this */}
+            {/*
+              缺点：
+              1. 每次调用都需要重新绑定，性能较差，编写繁琐，
+              2. 有时候为了避免重复编写，我们会将其方便到构造器中，
+                 并在事件绑定时直接引用修正this后的bind方法
+                 但这样参数传递就变得没有那么便捷
+            */}
+            <button onClick={this.increment}>+1（bind）</button>
+            {/* 方法二：类字段箭头函数 */}
+            {/* 类字段在编译后会被加入构造函数底层，因此其上层作用域中this指向组件实例 */}
+            {/*
+              缺点:
+              1. 方法是定义在实例上，而非原型上的
+              2. 参数传递不方便，依旧需要借助bind方法或外层包裹一层箭头函数
+            */}
+            <button onClick={this.decrement}>-1（class field）</button>
+            {/* 方法三：JSX 内联箭头函数传参 */}
+            {/*
+              1. 定义的箭头函数本质是作为编译后 vdom的属性存在的，没有给实例添加额外的方法
+              2. 箭头函数上层作用域是render，render中的this是组件实例
+              3. 本质是自己手动调函数，所以参数怎么传递，我们自己说了算
+            */}
+            <button onClick={() => this.changeCount(10)}>+10（arrow）</button>
+          </React.Fragment>
+        )
+      }
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById('root'))
+    root.render(<App />)
+  </script>
+</body>
+</html>

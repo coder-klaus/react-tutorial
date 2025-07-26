@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="https://react.dev/favicon.ico" />
+  <title>React合成事件的this指向问题</title>
+
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    class App extends React.PureComponent {
+      handleClick() {
+        // React 合成事件中的事件处理函数默认情况下其 `this` 指向为 `undefined`
+        console.log('handleClick', this)
+        // 点击后会在控制台打印 'handleClick undefined'
+      }
+
+      // 在组件的 render 方法、构造函数和生命周期方法中，`this` 默认指向组件实例
+      render() {
+        console.log(this) // 组件实例 App{...}
+        return (
+          <div>
+            <button onClick={ this.handleClick }>点击</button>
+          </div>
+        )
+      }
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById('root'))
+    root.render(<App />)
+  </script>
+</body>
+</html>
