@@ -4,7 +4,7 @@
 import { PureComponent } from 'react'
 
 export class ClassComponent extends PureComponent {
-  // 原则上，定义状态和数据需要定义在构造函数中，
+  // 原则上，状态和数据一般会被定义到构造函数中
   // 但ES6提供了类字段定义方式，浏览器解析时会自动将类字段定义方式直接放入构造函数的最后执行
   // 因此我们可以直接在类中直接定义，以省略构造函数
 
