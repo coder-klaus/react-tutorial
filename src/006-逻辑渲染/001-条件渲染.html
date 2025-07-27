@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="https://react.dev/favicon.ico" />
+  <title>模拟 v-if / v-for</title>
+
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    class App extends React.PureComponent {
+      state = {
+        show: true,
+      }
+
+      render() {
+        return (
+          <div>
+            <button onClick={() => this.setState({ show: !this.state.show })}>toggle</button>
+
+            {/* 模拟 v-if */}
+            {this.state.show && <h2>模拟 v-if </h2>}
+
+            {/* 模拟 v-show */}
+            <h2 style={{ display: this.state.show ? 'block' : 'none' }}>模拟 v-show</h2>
+          </div>
+        )
+      }
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById('root'))
+    root.render(<App />)
+  </script>
+</body>
+</html>

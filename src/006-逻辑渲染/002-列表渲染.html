@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" href="https://react.dev/favicon.ico" />
-  <title>React合成事件的this指向问题</title>
+  <title>列表渲染</title>
 
   <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
   <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
@@ -16,14 +16,30 @@
   <script type="text/babel">
     class App extends React.PureComponent {
       state = {
-        count: 0
+        students: [
+          { id: 111, name: "Steven", score: 99 },
+          { id: 112, name: "Cobie", score: 98 },
+          { id: 113, name: "SanBuSi", score: 199 },
+          { id: 114, name: "Kuri", score: 198 }
+        ]
       }
 
       render() {
+        const { students } = this.state
+
         return (
-          <div>
-            <h2>计数器：{ this.state.count }</h2>
-          </div>
+          <ul>
+            {students
+              .filter(item => item.score > 100)
+              .map(item => (
+                // React的列表元素也需要给key属性以对循环节点进行唯一标识，从而提升diff性能
+                <li key={item.id}>
+                  <h3>学号: {item.id}</h3>
+                  <h3>姓名: {item.name}</h3>
+                  <h1>分数: {item.score}</h1>
+                </li>
+              ))}
+          </ul>
         )
       }
     }
