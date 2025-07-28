@@ -12,7 +12,13 @@ import React from 'react';
 
 // 组件通信
 // import Child from './components/003-组件通信/001-父子通信(基础款)'
-import Child from './components/003-组件通信/002-父子通信(prop-types款)'
+// import Child from './components/003-组件通信/002-父子通信(prop-types款)'
+
+// 模拟插槽
+// import Child from './components/004-模拟插槽/001-插槽(类Vue插槽形式)'
+// import Child from './components/004-模拟插槽/002-插槽(以props形式)'
+// import Child from './components/004-模拟插槽/003-Children/001-为什么要Children'
+import Child from './components/004-模拟插槽/003-Children/002-React-Children'
 
 const App = () => {
   return (
