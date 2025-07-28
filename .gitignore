@@ -23,4 +23,9 @@ dist-ssr
 *.sln
 *.sw?
 
+# package manager lock files
+package-lock.json
+pnpm-lock.yaml
+yarn.lock
+
 note.js
