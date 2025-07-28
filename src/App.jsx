@@ -8,7 +8,10 @@ import React from 'react';
 
 // 组件生命周期
 // import Child from './components/002-组件生命周期/001-常用的生命周期钩子'
-import Child from './components/002-组件生命周期/002-不常见的生命周期钩子'
+// import Child from './components/002-组件生命周期/002-不常见的生命周期钩子'
+
+// 组件通信
+import Child from './components/003-组件通信/001-父子通信(基础款)'
 
 const App = () => {
   return (
