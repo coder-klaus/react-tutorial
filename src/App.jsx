@@ -22,7 +22,8 @@ import React from 'react';
 // import Child from './components/004-模拟插槽/004-作用域插槽'
 
 // Context
-import Child from './components/005-Context/001-Context的基本使用'
+// import Child from './components/005-Context/001-Context的基本使用'
+import Child from './components/005-Context/002-Context的嵌套调用'
 
 const App = () => {
   return (
