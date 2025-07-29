@@ -15,6 +15,7 @@ export class ContextDemoApp extends PureComponent {
                + 通过 value属性提供共享数据
                + 共享数据一般为对象类型，以便于同时提供多个共享数据
              + Consumer组件 => 共享数据的消费者
+          3. 当 Provider 提供的共享数据发生改变时，所有依赖该 Context 的组件会自动重新渲染
         */}
         <ThemeContext.Provider value={{ color: 'red' }}>
           <ClassContextConsumer />
