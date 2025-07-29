@@ -36,14 +36,12 @@ function Child(props) {
   // 1. 第二个回调中只有 item 和 index 两个参数，并不存在第三方参数 arr
   // 2. 如果没有子元素，map方法将直接返回 undefined
   const mapped = Children.map(props.children, (child, idx) => {
-    return child
-      ? (
-        <div>
-          <span style={{ color: '#4caf50' }}>🌈第{idx + 1}个子元素：</span>
-          {child}
-        </div>
-      )
-      : null
+    return (
+      <div>
+        <span style={{ color: '#4caf50' }}>🌈第{idx + 1}个子元素：</span>
+        {child}
+      </div>
+    )
   })
   console.log('Children.map 处理后的新数组：', mapped)
 
