@@ -19,7 +19,10 @@ import React from 'react';
 // import Child from './components/004-模拟插槽/002-插槽(以props形式)'
 // import Child from './components/004-模拟插槽/003-Children/001-为什么要Children'
 // import Child from './components/004-模拟插槽/003-Children/002-React-Children'
-import Child from './components/004-模拟插槽/004-作用域插槽'
+// import Child from './components/004-模拟插槽/004-作用域插槽'
+
+// Context
+import Child from './components/005-Context/001-Context的基本使用'
 
 const App = () => {
   return (
