@@ -24,7 +24,10 @@ import React from 'react';
 // Context
 // import Child from './components/005-Context/001-Context的基本使用'
 // import Child from './components/005-Context/002-Context的嵌套调用'
-import Child from './components/005-Context/003-Context的默认值'
+// import Child from './components/005-Context/003-Context的默认值'
+
+// 事件总线
+import Child from './components/006-事件总线'
 
 const App = () => {
   return (
