@@ -14,7 +14,6 @@ export default class App extends Component {
         {/*
           对于 Component而言，只要调用 setState，当前组件和其子组件就会重新渲染
           即使 新旧状态是一致的，此时会全量生成全新的VDOM，但 diff之后，没有patch不进行实际 DOM更新
-          因此 实际开发中，推荐使用 PureComponent 或 memo 进行性能优化，避免组件无意义的刷新
         */}
         <button onClick={() => this.setState({ count: 0 })}>click</button>
       </>
