@@ -11,7 +11,8 @@
 // 002-性能优化
 // import Child from './components/002-性能优化/001-状态更新默认行为'
 // import Child from './components/002-性能优化/002-shallowEqual.js' => 这个直接通过node运行即可
-import Child from './components/002-性能优化/003-自动SCU'
+// import Child from './components/002-性能优化/003-自动SCU'
+import Child from './components/002-性能优化/004-memo的第二个参数'
 
 
 const App = () => <Child />
