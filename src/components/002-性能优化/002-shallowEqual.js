@@ -6,7 +6,12 @@ function isObject(obj) {
 // 浅比较函数
 function shallowEqual(objA, objB) {
   // 如果引用相等，直接返回 true
-  if (objA === objB) {
+
+  // Object.is 判断两个值是否相同（类似于 ===）
+  // Object.is 与 === 的区别：
+  // 1. 在 Object.is 中，+0 和 -0 是相等的，而在 === 中是不相等的
+  // 2. 在 Object.is 中，NaN 和 NaN 是相等的，而在 === 中是不相等的
+  if (Object.is(objA, objB)) {
     return true
   }
 
