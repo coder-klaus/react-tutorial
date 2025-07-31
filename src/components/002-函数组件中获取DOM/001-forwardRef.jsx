@@ -4,6 +4,10 @@ import { PureComponent, createRef, memo, forwardRef } from 'react'
   如果同时使用 memo 和 forwardRef，则需要将 memo 放在 forwardRef 的外面
   从而确保 forwardRef 会将 ref 自动注入为 函数组件的 第二个参数
   如果 forwardRef 放在 memo 外，ref会注入给memo，而memo不会转发给 函数组件
+
+  forwardRef 其实就是 React 提供的一个高阶组件
+  + forwardRef 接收一个函数组件，并返回一个新的函数组件
+  + forwardRef会将 ref 注入为 新函数组件的 第二个参数，用于实现 ref的转发
 */
 const FunCpn = memo(forwardRef((props, ref) => {
   return (
