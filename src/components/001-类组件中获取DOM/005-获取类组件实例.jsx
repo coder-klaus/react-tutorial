@@ -26,6 +26,7 @@ export class App extends PureComponent {
   componentDidMount() {
     // 如果ref对象直接作用于类组件，获取的就是类组件对应的实例对象
     console.log(this.classCpnRef.current)
+    console.log(this.classCpnRef.current.state) // => { count: 0 }
   }
 
   render() {
