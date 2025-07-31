@@ -6,6 +6,7 @@
 
 // 002-多个表单项的统一处理
 // import App from './components/002-多个表单项的统一处理/001-文本输入框'
-import App from './components/002-多个表单项的统一处理/002-单选和多选的checkbox'
+// import App from './components/002-多个表单项的统一处理/002-checkbox'
+import App from './components/002-多个表单项的统一处理/003-select'
 
 export default App

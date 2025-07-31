@@ -5,12 +5,9 @@ import { PureComponent } from 'react';
  */
 class CheckboxDemo extends PureComponent {
   state = {
-    // 文本输入框
-    username: '',
-    // 单选 checkbox
-    isAgree: false,
-    // 多选 checkbox
-    hobbies: []
+    isAgree: false, // 单选 checkbox
+    // 单选值绑定为字符串或布尔类型值，多选值绑定为数组类型值
+    hobbies: [] // 多选 checkbox
   };
 
   hobbyOptions = [
@@ -19,15 +16,10 @@ class CheckboxDemo extends PureComponent {
     { label: '羽毛球', value: 'badminton' }
   ]
 
-  /**
-   * 统一处理文本输入框和 checkbox 的变化事件
-   * 根据不同类型的表单项，自动更新对应的 state
-   */
   handleInputChange = (event) => {
     const { name, checked, type, value } = event.target;
 
     this.setState({
-      // checkbox的选中状态由checked属性控制，而非value
       [name]: type === 'checkbox' ? checked : value
     });
   };
@@ -51,17 +43,10 @@ class CheckboxDemo extends PureComponent {
   };
 
   render() {
-    const { username, isAgree, hobbies } = this.state;
+    const { isAgree, hobbies } = this.state;
 
     return (
       <div>
-        <label htmlFor="username">
-          用户名: <input type="text" id="username" name="username" onChange={this.handleInputChange} />
-        </label>
-        <p>用户名：{username}</p>
-
-        <hr />
-
         <h2>单选 Checkbox 示例（同意协议）☑️</h2>
         <label htmlFor="agree">
           <input
