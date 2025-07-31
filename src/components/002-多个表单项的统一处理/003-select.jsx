@@ -13,7 +13,7 @@ export class App extends PureComponent {
   handleChange = (event) => {
     const { name, value, multiple, selectedOptions } = event.target
 
-    // 对于 select 元素，存在如下两个 伪数组属性
+    // 对于 select 元素，存在如下两个 伪数组属性, 它们的类型都是 HTMLCollection
     // 1. selectedOptions：所有已选 option 的集合
     // 2. options：所有 option 的集合
     //    + 存在属性selectedIndex 表示当前选中项的索引
@@ -24,8 +24,8 @@ export class App extends PureComponent {
 
     if (multiple) {
       // 多选
-      const values = Array.from(selectedOptions)
-        .map(option => option.value)
+      // Array.from 的第二个参数 就是 map方法
+      const values = Array.from(selectedOptions, option => option.value)
       this.setState({ [name]: values })
     } else {
       // 单选
