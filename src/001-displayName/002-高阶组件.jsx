@@ -17,6 +17,8 @@ function withLogger(Component) {
 
 const LoggedHello = withLogger(MyClass)
 
+console.log('-----------------------------------------------------')
+
 // 导出匿名组件，又是自定义HOC，所以 DevTool 不知道如何显示组件名，显示为 Anonymous
 function withLoggerWithAnyonmous(Component) {
   return (props) => <Component {...props} />
