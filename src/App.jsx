@@ -1,12 +1,4 @@
-import React from 'react';
-
-const App = () => {
-  return (
-    <div>
-      <h1>Hello World</h1>
-    </div>
-  );
-};
+// 👇 需要切换示例时，只需修改下方 import 的注释即可！
+import App from './001-注入props'
 
 export default App;
-
