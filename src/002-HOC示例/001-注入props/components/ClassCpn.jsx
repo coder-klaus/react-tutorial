@@ -1,11 +1,11 @@
 import { PureComponent } from 'react'
 import { withProps } from '../hoc/withProps'
 
-export class ClassCpn extends PureComponent {
+class ClassCpn extends PureComponent {
   render() {
     return (
       <div>
-        <h2>ClassCpn</h2>
+        <h2>ClassCpn 🏫</h2>
         {/* 这是 HOC 注入的 props */}
         <p>msg: {this.props.msg}</p>
         {/* 这是外部传入的 props */}
@@ -15,4 +15,5 @@ export class ClassCpn extends PureComponent {
   }
 }
 
-export default withProps(ClassCpn)
+const EnhancedClassCpn = withProps(ClassCpn)
+export default EnhancedClassCpn
