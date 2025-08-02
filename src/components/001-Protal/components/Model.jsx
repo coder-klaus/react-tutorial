@@ -1,4 +1,5 @@
 import { PureComponent, Children } from 'react'
+// createPortal 来自于 react-dom，而不是react
 import { createPortal } from 'react-dom'
 
 // Portal 组件 - 将子元素渲染到指定 DOM 节点
