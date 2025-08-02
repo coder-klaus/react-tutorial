@@ -3,9 +3,11 @@
 // 001-displayName
 // import App from './001-displayName/001-普通组件'
 // import App from './001-displayName/002-高阶组件'
-import App from './001-displayName/003-内置Hoc'
+// import App from './001-displayName/003-内置Hoc'
 
 // 002-HOC示例
 // import App from './002-HOC示例/001-注入props'
+import App from './002-HOC示例/002-页面鉴权'
+// import App from './002-HOC示例/003-HOC的嵌套调用'
 
 export default App
