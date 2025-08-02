@@ -1,12 +1,5 @@
-import React from 'react';
+// 👇 需要切换示例时，只需修改下方 import 的注释即可！
 
-const App = () => {
-  return (
-    <div>
-      <h1>Hello World</h1>
-    </div>
-  );
-};
+import App from './components/001-Protal'
 
-export default App;
-
+export default App
