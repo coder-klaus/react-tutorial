@@ -1,16 +1,16 @@
-import { memo } from 'react'
-import { AppWrapper } from './style'
+import React, { PureComponent } from 'react'
+// 导入样式组件
+import AppWrapper from './style.js'
 
-const App = memo(() => {
-  return (
-    <AppWrapper>
-      <section className="section">
-        <h1 className="title">我是标题</h1>
-        <p className="content">我是内容</p>
-      </section>
-      <div className="footer">版权声明</div>
-    </AppWrapper>
-  )
-})
+export class App extends PureComponent {
+  render() {
+    return (
+      <AppWrapper>
+				<h2 className="title">title</h2>
+				<p className="content">content</p>
+			</AppWrapper>
+    )
+  }
+}
 
 export default App

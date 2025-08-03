@@ -1,41 +1,45 @@
-// styled-components 是一种 CSS-in-JS 方案，允许在 JavaScript 文件中编写样式代码
+// styled-components 简写为 SC
+// 是 css in js 的一种实现方案, 所以样式后缀为 .js
 import styled from 'styled-components';
 
-// 1. 使用模板字符串定义带样式的组件，语法与原生 CSS 基本一致
-// 2.通过 styled.<tag>（如 styled.div）创建样式化组件，例如 AppWrapper，它会渲染为指定的 HTML 元素，并自动附带生成的 CSS 样式。
+// 使用 styled.<tag> 结合 标签模板字符串创建样式组件
+// 1. 样式组件会被渲染为带对应样式的 <tag> 组件元素
+// 2. 标签模板字符串内写法和原生CSS嵌套写法基本一致
+// 3. 内部注释使用的也是 CSS 注释 （/* ... */）
 const AppWrapper = styled.div`
-  /* SC中的注释使用 CSS 注释形式 */
-  background-color: #f0f0f0;
+  /* 🎨 基本样式演示 */
+  border: 2px solid #4f8ef7;
   padding: 20px;
-  border-radius: 5px;
+  background-color: #f0f8ff;
 
-  .footer {
-    margin-top: 20px;
-    color: green;
+  /* 标题样式 */
+  .title {
+    color: #e67e22;
+    font-size: 28px;
+    font-weight: bold;
     cursor: pointer;
 
-    /* 可以在样式中使用伪类，例如 &:hover，它会被转换为对应的选择器（如 .footer:hover）。 */
+    /* &:hover 会编译为 .title:hover */
     &:hover {
-      color: red;
+      color: #4f8ef7;
+    }
+  }
+
+  /* 内容样式 */
+  .content {
+    color: #34495e;
+    font-size: 18px;
+    line-height: 1.7;
+    padding: 10px 16px;
+    background: #fffbe6;
+    cursor: pointer;
+
+    /* &:hover 会编译为 .content:hover */
+    &:hover {
+      color: #e67e22;
     }
   }
 `;
 
-// 1. 样式组件支持嵌套调用，可以在组件内嵌套选择器。
-// 2. 通常建议使用大驼峰命名法，并以 Wrapper 作为样式组件的后缀，例如 SectionWrapper。
-const SectionWrapper = styled.section`
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 5px;
-
-  .title {
-    color: red;
-  }
-
-  .content {
-    color: blue;
-  }
-`;
-
-// 推荐为 IDE 安装 styled-components 插件，以获得语法高亮和代码提示
-export { AppWrapper, SectionWrapper };
+// 样式组件命名一般为 XxxWrapper 以示区分
+export default AppWrapper
