@@ -1,12 +1,4 @@
-import React from 'react';
+import App from './components/001-内联样式'
+// import App from './components/002-css modules'
 
-const App = () => {
-  return (
-    <div>
-      <h1>Hello World</h1>
-    </div>
-  );
-};
-
-export default App;
-
+export default App
