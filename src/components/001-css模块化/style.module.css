@@ -1,0 +1,16 @@
+.profile {
+  font-size: 24px;
+  color: blue;
+}
+
+.profile .user-name {
+  color: red;
+}
+
+.content {
+  padding: 10px;
+}
+
+#profile {
+  color: green;
+}
