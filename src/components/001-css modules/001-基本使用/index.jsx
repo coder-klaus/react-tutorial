@@ -30,8 +30,7 @@ const App = memo(() => {
   return (
     <>
       <div className={styles.profile}>
-        <span className={styles['user-name']}>Hello</span>
-        <span>World</span>
+        <span className={styles['user-name']}>Hello World !</span>
       </div>
       <p className={styles.content}>content</p>
       {/* 只是将 类名和id名 本地化了一下，该怎么用还是怎么用 */}

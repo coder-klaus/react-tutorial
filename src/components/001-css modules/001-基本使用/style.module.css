@@ -4,7 +4,11 @@
 }
 
 /*
-  为了方便在组件中使用，推荐命名为 .profile .userName, 而非 .profile .user-name
+  假设在组件中导入的样式对象为 styles，
+  那么如果命名为小驼峰「 如 .profile .userName 」，则可以通过 styles.userName 来访问这个类名
+  如果命名为中划线「 如 .profile .user-name 」，则需要通过 styles['user-name'] 来访问这个类名
+
+  因此为了方便使用，多单词的类名推荐使用小驼峰命名法，而不是中划线命名法
 */
 .profile .user-name {
   color: red;
@@ -16,12 +20,4 @@
 
 #footer {
   color: green;
-}
-
-/*
-  标签选择器不会被编译，它是全局生效的
-  所以并不推荐在 CSS Modules 中使用标签选择器
-*/
-span {
-  color: peru;
 }
