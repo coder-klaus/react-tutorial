@@ -6,6 +6,8 @@
 // css in js
 // import App from './components/002-css in js/001-基本使用'
 // import App from './components/002-css in js/002-样式组件嵌套'
-import App from './components/002-css in js/003-样式动态化'
+// import App from './components/002-css in js/003-样式动态化'
+// import App from './components/002-css in js/004-默认值'
+import App from './components/002-css in js/005-设置主题'
 
 export default App
