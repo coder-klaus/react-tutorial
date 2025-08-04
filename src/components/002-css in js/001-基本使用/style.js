@@ -1,45 +1,30 @@
-// styled-components 简写为 SC
-// 是 css in js 的一种实现方案, 所以样式后缀为 .js
-import styled from 'styled-components';
+// css in js 是通过 js 来编写样式，所以样式文件后缀为 .js
+import styled from 'styled-components'
 
-// 使用 styled.<tag> 结合 标签模板字符串创建样式组件
-// 1. 样式组件会被渲染为带对应样式的 <tag> 组件元素
-// 2. 标签模板字符串内写法和原生CSS嵌套写法基本一致
-// 3. 内部注释使用的也是 CSS 注释 （/* ... */）
-const AppWrapper = styled.div`
-  /* 🎨 基本样式演示 */
-  border: 2px solid #4f8ef7;
-  padding: 20px;
-  background-color: #f0f8ff;
+// 1. styled<tag>`` 是 styled-components 的语法，用于创建一个 styled 组件 「 样式组件 」
+// 2. 样式组件中样式写法 和 原生 css 写法基本一致
+// 3. 样式组件的命名格式一般为 XxxWrapper 「 如 AppWrapper 」以和普通组件进行区分
+export const AppWrapper = styled.div`
+  border: 1px solid red;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 5px;
+  background-color: #f0f0f0;
+  cursor: pointer;
 
-  /* 标题样式 */
+  &:hover {
+    background-color: #e0e0e0;
+  }
+
   .title {
-    color: #e67e22;
-    font-size: 28px;
-    font-weight: bold;
-    cursor: pointer;
-
-    /* &:hover 会编译为 .title:hover */
-    &:hover {
-      color: #4f8ef7;
-    }
+    color: red;
   }
 
-  /* 内容样式 */
   .content {
-    color: #34495e;
-    font-size: 18px;
-    line-height: 1.7;
-    padding: 10px 16px;
-    background: #fffbe6;
-    cursor: pointer;
-
-    /* &:hover 会编译为 .content:hover */
-    &:hover {
-      color: #e67e22;
-    }
+    color: blue;
   }
-`;
 
-// 样式组件命名一般为 XxxWrapper 以示区分
-export default AppWrapper
+  .footer {
+    color: green;
+  }
+`
