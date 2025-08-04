@@ -1,0 +1,27 @@
+/* CSS Modules 在编写的时候，和普通CSS编写方式完全一致 */
+.profile {
+  color: blue;
+}
+
+/*
+  为了方便在组件中使用，推荐命名为 .profile .userName, 而非 .profile .user-name
+*/
+.profile .user-name {
+  color: red;
+}
+
+.content {
+  color: orange;
+}
+
+#footer {
+  color: green;
+}
+
+/*
+  标签选择器不会被编译，它是全局生效的
+  所以并不推荐在 CSS Modules 中使用标签选择器
+*/
+span {
+  color: peru;
+}
