@@ -10,6 +10,7 @@
 // context
 // import App from './components/003-context/001-基本使用'
 // import App from './components/003-context/002-contextType'
-import App from './components/003-context/003-嵌套调用'
+// import App from './components/003-context/003-嵌套调用'
+import App from './components/003-context/004-默认值'
 
 export default App
