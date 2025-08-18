@@ -8,8 +8,8 @@
 // import App from './components/002-插槽/004-作用域插槽 「props实现」'
 
 // context
-import App from './components/003-context/001-基本使用'
+// import App from './components/003-context/001-基本使用'
+// import App from './components/003-context/002-contextType'
+import App from './components/003-context/003-嵌套调用'
 
 export default App
-
-
