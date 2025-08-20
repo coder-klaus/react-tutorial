@@ -5,5 +5,5 @@
 //    + 因此推荐将魔法字面量抽取为单独的常量进行管理，日后如果需要修改，只需要修改常量值即可完成统一修改
 // 2. 在一个文件中定义，如果行为标识冲突，会报错 => 可以避免行为标识重名
 // 3. 在导出使用时，可以通过IDE提供代码补全提示，避免出错可能性
-export const COUNT_INCREMNT = 'COUNT_INCREMNT'
-export const COUNT_DECREMNT = 'COUNT_DECREMNT'
+export const COUNT_INCREMENT = 'COUNT_INCREMENT'
+export const COUNT_DECREMENT = 'COUNT_DECREMENT'
