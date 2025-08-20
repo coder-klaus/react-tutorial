@@ -26,12 +26,10 @@ export function reducer(state = { count: 0 }, action) {
     // + 因为 immer.js 相比较于 immutable.js 更为简单，更接近于原生JavaScript写法
 
     case COUNT_INCREMENT:
-      state.count += action.payload.step
-      return state
-      // return {
-      //   ...state,
-      //   count: state.count + action.payload.step
-      // }
+      return {
+        ...state,
+        count: state.count + action.payload.step
+      }
     case COUNT_DECREMENT:
       return {
         ...state,
