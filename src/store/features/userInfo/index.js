@@ -1,6 +1,6 @@
 import { SET_USER_INFO, SET_USER_INFO_NAME, SET_USER_INFO_AGE } from './consts'
 
-export default function reducer(state = {  }, { type, payload }) {
+export default function reducer(state = {}, { type, payload }) {
   switch (type) {
     case SET_USER_INFO:
       return {  ...payload }
