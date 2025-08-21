@@ -10,6 +10,8 @@ const counterSlice = createSlice({
   // 初始化状态
   initialState: { count: 0 },
   // 事件处理函数
+  // 1. 每一个 函数，相等于之前reducer的每一个case语句被匹配后需要执行的函数
+  // 2. 每一个函数，第一个参数为 state，第二个参数为 action
   reducers: {
     // 事件处理函数，参数为 state 和 action
     incrementAction: (state, action) => {
