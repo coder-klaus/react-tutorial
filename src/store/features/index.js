@@ -2,13 +2,7 @@ import { combineReducers } from 'redux'
 import counter from './counter'
 import userInfo from './userInfo'
 
-/*
-  通过 combineReducers 合并多个 reducer, 最终变成类似于如下的对象
-  {
-    counter: counterReducer,
-    userInfo: userInfoReducer,
-  }
-*/
+// 通过 combineReducers 合并多个 reducer, 变成一个大的 reducer 函数
 export default combineReducers({
   counter,
   userInfo,
