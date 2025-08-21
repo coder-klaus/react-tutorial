@@ -4,7 +4,7 @@ import { thunk } from 'redux-thunk'
 import promise from 'redux-promise'
 import { reducer } from './reducer'
 
-// 参数一是 reducer 函数，参数二是中间件
+// 参数一是 reducer 函数，参数二是 中间件增强器（middleware enhancer）
 // applyMiddleware 可以接收多个中间件，并按照顺序依次判断是否满足执行条件，如果满足则执行
 
 // ⚠️: 本例是示例，redux-thunk 和 redux-promise 都是用于在 redux 中派发 异步任务的中间件
