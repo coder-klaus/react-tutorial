@@ -1,56 +1,61 @@
-// 实际使用时，store 通常通过 react-redux 的 Provider 注入到组件树中
-// 这里是自定义实现 connect 的伪代码，没有 Provider，因此手动引入 store
-import { bindActionCreators } from '../utils/bindActionCreators'
-import { useEffect, useState, memo, useMemo, useContext } from 'react'
-import { shallowEqual } from '../utils/shallowEqual'
+import { useContext, useState, useEffect, useMemo } from 'react'
 import StoreContext from '../context/StoreContext'
+import { bindActionCreators } from '../utils/bindActionCreators'
+import { shallowEqual } from '../utils/shallowEqual'
 
-// connect是个高阶函数，返回高阶组件 => 通过订阅store变化，把state和dispatch映射到组件props上
-// ⚠️ 组件更新逻辑也是 connect 内部实现的 ！！！
-export function connect(mapStateToProps, mapDispatchToProps) {
+export default function connect(mapStateToProps, mapDispatchToProps) {
+  if (typeof mapStateToProps !== 'function') {
+    throw new Error('mapStateToProps must be a function')
+  }
+
+  if (!['object', 'function'].includes(typeof mapDispatchToProps)) {
+    throw new Error('mapDispatchToProps must be a function or an object')
+  }
+
+  // redux-thunk 中的 connect 是通过类组件实现的，这里通过函数组件模拟实现
   return function (WrappedComponent) {
-    return memo((props) => {
-      const store = useContext(StoreContext)
+    return function (props) {
+      const { getState, dispatch, subscribe } = useContext(StoreContext)
+      const [stateProps, setStateProps] = useState(() => mapStateToProps(getState()))
 
-      // 参数初始化只需要首次渲染时调用即可，后续无需再次初始化，使用无依赖项的 useMemo 避免每次渲染都重新初始化
-      const stateToPropsFn = useMemo(() => {
-        return typeof mapStateToProps === 'function' ? mapStateToProps : () => ({})
-      }, [])
-
-      const [stateProperty, setStateProperty] = useState(() => stateToPropsFn(store.getState()))
-
-      let dispatchProps = useMemo(() => {
-        if (typeof mapDispatchToProps === 'function') {
-          return mapDispatchToProps(store.dispatch, props)
-        } else if (typeof mapDispatchToProps === 'object') {
-          return bindActionCreators(mapDispatchToProps, store.dispatch)
-        } else {
-          return {}
-        }
-      // props 改变，需要重新执行 mapDispatchToProps 获取最新 dispatchProps
-      // 因此需要将 props 添加到依赖数组中，避免闭包陷阱
-      // 简单来说就是缓存的回调函数在访问闭包变量时，因为记住的是之前执行上下文中的变量值，而不是当前执行上下文中的变量值，从而出现bug
-      }, [props, store])
+      // 这是生成一个新的函数，所以需要使用useMemo 进行缓存 => 类似于计算缓存
+      // 除非 dispatch 和 props 发生变化，否则不会重新计算
+      const dispatchProps = useMemo(() => {
+        // useMemo 的值是参数回调的返回值，所以需要返回一个值
+        return typeof mapDispatchToProps === 'object' ?
+        bindActionCreators(mapDispatchToProps, dispatch) :
+        // 如果connect第二个参数类型是函数，则存在两个参数 dispatch 和 props
+        // 如果 connect 第二个参数类型是对象，则只存在一个参数 dispatch，不存在 props 参数
+        mapDispatchToProps(dispatch, props)
+      }, [dispatch, props])
 
       useEffect(() => {
-        const unsubscribe = store.subscribe(() => {
-          const newStateProps = stateToPropsFn(store.getState())
+        // ⚠️ 组件更新逻辑也是 connect 内部实现的 ！！！
+        const unsubscribe = subscribe(() => {
+          setStateProps(prev => {
+            const newStateProps = mapStateToProps(getState())
 
-          // 状态更新函数，推荐使用函数式更新 => 避免获取外部变量，导致闭包陷阱
-          setStateProperty(prev => {
-            if (!shallowEqual(prev, newStateProps)) {
-              return newStateProps
-            }
-            return prev
+            // memo 只是对 props 进行浅比较，并不比较状态
+            // 状态更新函数，如果参数值引用一致，会停止更新
+            // 所以在这里 需要自己手动通过 shallowEqual 进行比较 状态是否发生变化
+            // 避免每次 mapStateToProps 都返回的都是独立新对象
+            return shallowEqual(prev, newStateProps) ? prev : newStateProps
           })
         })
-        return unsubscribe
-        // 只要 useEffect 使用了外部变量，就应将这些变量添加到依赖数组中
-        // 这样可以确保当依赖项发生变化时，useEffect 会重新执行，回调函数能够获取到最新的变量值，从而避免闭包陷阱。
-      }, [stateToPropsFn, store])
 
-      return <WrappedComponent {...props} {...stateProperty} {...dispatchProps} />
-    })
+        // 更新订阅时，移除上一次订阅
+        return unsubscribe
+
+      // 再执行useEffect 时，所以使用的外部变量都应该被视为依赖
+      // 以便于在外部变量发生改变时，可以使用最新值执行对应副作用回调
+      // 从而避免闭包陷阱 => 即副作用回调访问外部变量时，因为是之前执行上下文中的变量，而非最新执行上下文中的变量
+      // 最终导致逻辑执行错误
+
+      // 但是在本例中，getState 和 subscribe 这类外部变量很明确不会发生改变
+      // 存在的唯一意义是为了避免 ESLint 警告错误
+      }, [getState, subscribe])
+
+      return <WrappedComponent {...props} {...stateProps} {...dispatchProps} />
+    }
   }
 }
-
