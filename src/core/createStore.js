@@ -21,6 +21,8 @@ export default function createStore(reducer, enhancer) {
 
       listeners.forEach(listener => listener())
 
+      // 一般情况下，dispatch方法会返回action对象
+      // 这样就可以以组合的方式递归进行派发操作
       return action
     },
     subscribe: (listener) => {

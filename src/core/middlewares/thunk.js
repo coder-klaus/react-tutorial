@@ -4,6 +4,7 @@ export const thunk = store => next => action => {
     return action(store.dispatch, store.getState)
   }
 
-  // 将中间件调用结果逐层返回，以便于最外层使用
+  // 一般情况下，中间件需要将 执行结果 return
+  // 目的是 如果用户的执行逻辑中显示返回了结果，那么中间件链就需要逐层将结果返回给最外层
   return next(action)
 }
