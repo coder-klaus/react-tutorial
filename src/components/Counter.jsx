@@ -1,6 +1,6 @@
 import { memo } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { incrementAsyncAction, decrementAction } from '../store/features/counter'
+import { decrementAction, incrementAsyncAction } from '../store/features/counter'
 
 const Counter = memo(() => {
   const count = useSelector(state => state.counter.count)
