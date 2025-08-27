@@ -1,6 +1,7 @@
 // 伪代码 => 模拟实现 thunk 中间件
 export const thunk = store => next => action => {
   if (typeof action === 'function') {
+    // 这里 执行函数时 传入的是 增强后的 dispatch，以便于可以嵌套派发异步action
     return action(store.dispatch, store.getState)
   }
 

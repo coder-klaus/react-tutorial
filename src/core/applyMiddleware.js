@@ -10,8 +10,10 @@ export default (...middlewares) => createStore => reducer => {
   // 没有其余方法，如 subscribe
   const middlewareAPI = {
     getState: store.getState,
-    // middlewareAPI 的 dispatch 方法，是经过组合后的 dispatch 方法
-    // 所以中间件中执行 dispatch 方法 后会重新执行一遍 中间件调用链
+    // dispatch方法值是箭头函数，最终运行时根据作用域链 dispatch为增强后的dispatch，即 chain.reduceRight 的返回值
+    // 因此对于每个中间件而言，有两个派发方法
+    // 1. next 方法，是下一个中间件的 dispatch 方法
+    // 2. dispatch 方法，是经过组合后的 dispatch 方法 => 重新执行一遍完整的中间件调用链
 
     // 一般来说 dispatch方法只需要传递 action 参数即可
     // ⚠️ 这里的 args 是为了避免一些中间件需要使用这种方式传递额外参数，属于兼容性处理，以提升代码的健壮性和可扩展性
