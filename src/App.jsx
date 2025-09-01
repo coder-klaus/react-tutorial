@@ -5,10 +5,23 @@ import Router from './Router'
 const App = memo(() => {
   return (
     <>
-      {/* Link 默认渲染为 a标签 => 没有属性指定其渲染后的标签形式 => 可以通过Link的子元素来指定渲染后的标签形式 */}
-      <Link to="/home">Home</Link>
-      <Link to="/contact">Contact</Link>
-      <Link to="/not-found">NotFound</Link>
+      {/*
+        Link 默认渲染为 a标签
+        => 没有属性指定其渲染后的标签形式
+        => 可以通过Link的子元素来指定渲染后的标签形式
+      */}
+      <Link to="/">
+        <button>default</button>
+      </Link>
+      <Link to="/home">
+        <button>Home</button>
+      </Link>
+      <Link to="/contact">
+        <button>Contact</button>
+      </Link>
+      <Link to="/not-found">
+        <button>NotFound</button>
+      </Link>
 
       {/*
         导入路由配置组件 => 即是路由配置，也是渲染占位符
