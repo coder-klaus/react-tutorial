@@ -1,5 +1,6 @@
 import { memo } from 'react'
 import { Routes, Route } from 'react-router-dom'
+// 视图组件一般放在 pages 目录下，全局组件放在 components 目录下
 import Home from './pages/Home'
 import Contact from './pages/Contact'
 import NotFound from './pages/NotFound'

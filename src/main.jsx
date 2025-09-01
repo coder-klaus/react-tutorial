@@ -6,7 +6,7 @@ import App from './App.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    {/* 开启路由 => 可以局部也可以全局，一般全局即可 */}
+    {/* 通过组件开启路由 => 可以局部也可以全局，一般全局即可 */}
     <BrowserRouter>
       <App />
     </BrowserRouter>
